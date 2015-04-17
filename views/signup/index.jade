@@ -1,0 +1,67 @@
+extends ../../layouts/default
+
+block head
+  title Sign Up
+
+block neck
+  link(rel='stylesheet', href='/views/signup/index.min.css?#{cacheBreaker}')
+
+block feet
+  script(src='/views/signup/index.min.js?#{cacheBreaker}')
+
+block body
+  div.row
+    div.col-sm-6
+      div.page-header
+        h1 Sign Up
+      div#signup
+    div.col-sm-6.marketing
+      div.page-header
+        h1 Campy Benefits
+      p.lead Really, you will love this game. It's super great!
+      i.fa.fa-thumbs-o-up.super-awesome
+
+  script(type='text/template', id='tmpl-signup')
+    form
+      div.alerts
+        |<% _.each(errors, function(err) { %>
+        div.alert.alert-danger.alert-dismissable
+          button.close(type='button', data-dismiss='alert') &times;
+          |<%- err %>
+        |<% }); %>
+      div.form-group(class!='<%- errfor.username ? "has-error" : "" %>')
+        label Pick a Username:
+        input(required).form-control(type='text', name='username', value!='<%= username %>')
+        span.help-block <%- errfor.username %>
+      div.form-group(class!='<%- errfor.firstName ? "has-error" : "" %>')
+        label Enter Your First Name:
+        input(required).form-control(type='text', name='firstName', value!='<%= firstName %>')
+        span.help-block <%- errfor.firstName %>
+      div(required).form-group(class!='<%- errfor.lastName ? "has-error" : "" %>')
+        label Enter Your Last Name:
+        input.form-control(type='text', name='lastName', value!='<%= lastName %>')
+        span.help-block <%- errfor.lastName %>
+      div(required).form-group(class!='<%- errfor.email ? "has-error" : "" %>')
+        label Enter Your Email:
+        input(required).form-control(type='text', name='email', value!='<%= email %>')
+        span.help-block <%- errfor.email %>
+      div(required).form-group(class!='<%- errfor.course ? "has-error" : "" %>')
+        label Enter Your Course Number And Section:
+        input.form-control(type='text', name='course', value!='<%= course %>')
+        span.help-block <%- errfor.course %>
+      div(required).form-group(class!='<%- errfor.semester ? "has-error" : "" %>')
+        label Choose A Semester:
+        br
+        select(name='semester')
+          //- option(value='', selected='selected')
+          option(value='fall') Fall
+          option(value='winter') Winter
+          option(value='spring') Spring
+          option(value='summer') Summer                    
+        span.help-block <%- errfor.semester %>
+      div.form-group(class!='<%- errfor.password ? "has-error" : "" %>')
+        label Create a Password:
+        input.form-control(type='password', name='password', value!='<%= password %>')
+        span.help-block <%- errfor.password %>
+      div.form-group
+        button.btn.btn-primary.btn-signup(type='button') Create My Account

@@ -1,0 +1,36 @@
+extends ../../layouts/admin
+
+block head
+  title Admin Area
+
+block neck
+  link(rel='stylesheet', href='/views/admin/index.min.css?#{cacheBreaker}')
+
+block body
+  div.row
+    div.col-sm-6
+      div.page-header
+        h1 Admin Area
+      div.row
+        div.col-sm-4
+          div.well.stat
+            div.stat-value #{countUser}
+            div.stat-label Users
+        div.col-sm-4
+          div.well.stat
+            div.stat-value #{countStudents}
+            div.stat-label Students
+        div.col-sm-4
+          div.well.stat
+            div.stat-value #{countAdmin}
+            div.stat-label Admins
+      div.row
+        div.col-sm-4
+          div.well.stat
+            div.stat-value #{countAdminGroup}
+            div.stat-label Groups
+
+    div.col-sm-6.special
+      div.page-header
+        h1 Super Dashboard
+      i.fa.fa-gears.super-awesome

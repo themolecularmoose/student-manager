@@ -1,0 +1,37 @@
+extends ../layouts/default
+
+block head
+  title Gleeb-Glob
+
+block neck
+  link(rel='stylesheet', href='/views/index.min.css?#{cacheBreaker}')
+
+block body
+  div.jumbotron
+    h1 Molecular Mission
+    p.lead
+      | The game that teaches you molecular geometries.
+      div
+        a.btn.btn-primary.btn-lg(href='/signup/') Create an Account
+        |  or&nbsp;
+        a.btn.btn-default.btn-lg(href='/game/') Play Now
+      div.clearfix
+  div.row
+    div.col-sm-4
+      div.panel.panel-default
+        div.panel-body
+          h3 About Us
+          p At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
+          a.btn.btn-default.btn-block(href='#') Learn More
+    div.col-sm-4
+      div.panel.panel-default
+        div.panel-body
+          h3 Sign Up
+          p In order to play the game you must first register so that your score and gameplay can be tracked for your professor. 
+          a.btn.btn-default.btn-block(href='/signup/') Learn More
+    div.col-sm-4
+      div.panel.panel-default
+        div.panel-body
+          h3 Contact Us
+          p If you have any issues with the game or signup process, or just have general questions about the game. Feel free to contact us. 
+          a.btn.btn-default.btn-block(href='/contact/') Learn More

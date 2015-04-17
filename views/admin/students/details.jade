@@ -1,0 +1,144 @@
+extends ../../../layouts/admin
+
+block head
+  title Students / Details
+
+block neck
+  link(rel='stylesheet', href='/views/admin/students/details.min.css?#{cacheBreaker}')
+
+block feet
+  script(src='/views/admin/students/details.min.js?#{cacheBreaker}')
+
+block body
+  div.row
+    div.col-xs-12
+      div#header
+  div.row
+    div.col-sm-8
+      div#details
+      div#login
+      div#delete
+    div.col-sm-4
+      fieldset
+        div#status-new.status-new
+        div#status-collection
+      fieldset
+        div#notes-new.notes-new
+        div#notes-collection
+
+  script(type='text/template', id='tmpl-header')
+    div.page-header
+      h1
+        a(href='/admin/students/') Students
+        |  / <%- name.full %>
+
+  script(type='text/template', id='tmpl-details')
+    fieldset
+      legend Contact Info
+      div.alerts
+        |<% _.each(errors, function(err) { %>
+        div.alert.alert-danger.alert-dismissable
+          |<%- err %>
+        |<% }); %>
+        |<% if (success) { %>
+        div.alert.alert-info.alert-dismissable
+          button.close(type='button', data-dismiss='alert') &times;
+          | Changes have been saved.
+        |<% } %>
+      div.form-group(class!='<%- errfor.first ? "has-error" : "" %>')
+        label First Name:
+        input(readonly).form-control(type='text', name='first', value!='<%- name.first %>')
+        span.help-block <%- errfor.first %>
+      div.form-group(class!='<%- errfor.last ? "has-error" : "" %>')
+        label Last Name:
+        input(readonly).form-control(type='text', name='last', value!='<%- name.last %>')
+        span.help-block <%- errfor['last'] %>
+      div.form-group(class!='<%- errfor.course ? "has-error" : "" %>')
+        label Course Number:
+        input(readonly).form-control(type='text', name='number', value!='<%- course.number %>')
+        span.help-block <%- errfor.course %>
+      div.form-group(class!='<%- errfor.semester ? "has-error" : "" %>')
+        label Semester:
+        input(readonly).form-control(type='text', name='semester', value!='<%- course.semester %> - <%- course.year %>')
+        span.help-block <%- errfor.semester %>
+      //- div.form-group(class!='<%- errfor.semester ? "has-error" : "" %>')
+      //-   label Choose A Semester:
+      //-   br
+      //-   select(name='semester')
+      //-     option(value='<%= course.semester %>', selected='selected')
+      //-     option(value='fall') Fall
+      //-     option(value='winter') Winter
+      //-     option(value='spring') Spring
+      //-     option(value='summer') Summer                    
+      //-   span.help-block <%- errfor.semester %>
+
+  script(type='text/template', id='tmpl-status-new')
+    legend Status
+    div.alerts
+      |<% _.each(errors, function(err) { %>
+      div.alert.alert-danger.alert-dismissable
+        button.close(type='button', data-dismiss='alert') &times;
+        |<%- err %>
+      |<% }); %>
+    div.input-group
+      select.form-control(name='status')
+        option(value='') -- choose --
+        for status in data.statuses
+          option(value='#{status._id}') #{status.name}
+      div.input-group-btn
+        button.btn.btn-default.btn-add Change
+
+  script(type='text/template', id='tmpl-status-collection')
+    div#status-items.status-items
+
+  script(type='text/template', id='tmpl-status-item')
+    div.pull-right.badge.author
+      |<%= userCreated.name %>
+      | -&nbsp;
+      span.timeago <%= userCreated.time %>
+    div <%- name %>
+    div.clearfix
+
+  script(type='text/template', id='tmpl-notes-new')
+    legend Notes
+    div.alerts
+      |<% _.each(errors, function(err) { %>
+      div.alert.alert-danger.alert-dismissable
+        button.close(type='button', data-dismiss='alert') &times;
+        |<%- err %>
+      |<% }); %>
+    textarea.form-control(rows='3', name='data', placeholder='enter notes')
+    button.btn.btn-default.btn-block.btn-add Add New Note
+
+  script(type='text/template', id='tmpl-notes-collection')
+    div#notes-items.notes-items
+
+  script(type='text/template', id='tmpl-notes-item')
+    div.force-wrap <%- data %>
+    div.pull-right.badge.author
+      |<%= userCreated.name %>
+      | -&nbsp;
+      span.timeago <%= userCreated.time %>
+    div.clearfix
+
+  script(type='text/template', id='tmpl-notes-none')
+    div.note.text-muted no notes found
+
+  script(type='text/template', id='tmpl-delete')
+    fieldset
+      legend Danger Zone
+      div.alerts
+        |<% _.each(errors, function(err) { %>
+        div.alert.alert-danger.alert-dismissable
+          button.close(type='button', data-dismiss='alert') &times;
+          |<%- err %>
+        |<% }); %>
+      div.form-group
+        span.help-block
+          span.label.label-danger If you do this, it cannot be undone.
+          |&nbsp;
+          span.text-muted You may also create orphaned document relationships too.
+      div.form-group
+        button.btn.btn-danger.btn-delete(type='button') Delete
+
+  script(type='text/template', id='data-record') !{data.record}

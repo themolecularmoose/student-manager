@@ -1,0 +1,24 @@
+extends ../../layouts/default
+
+block head
+  title Student Area
+
+block neck
+  link(rel='stylesheet', href='/views/index.min.css?#{cacheBreaker}')
+
+block feet
+  script(src='https://ssl-webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/jquery.min.js')
+  script(src='/views/game/index.js?#{cacheBreaker}')
+  script(src='/views/game/two.js?#{cacheBreaker}')
+
+block body
+  div.row
+    div.col-sm-6
+      div.page-header
+        h1 Game
+      div.content
+        div#unityPlayer
+          div.missing
+            woot
+          div.broken
+            jah
