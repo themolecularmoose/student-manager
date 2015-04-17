@@ -24,5 +24,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Default value: false
   config.ssh.forward_agent = true
   
-  config.vm.synced_folder "../drywall", "/home/vagrant/app"
+  config.vm.synced_folder "../student-manager", "/home/vagrant/app"
 end
