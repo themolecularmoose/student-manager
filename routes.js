@@ -107,7 +107,6 @@ exports = module.exports = function(app, passport) {
   app.get('/admin/students/', require('./views/admin/students/index').find);
   // app.post('/admin/students/', require('./views/admin/students/index').create);
   app.get('/admin/students/:id/', require('./views/admin/students/index').read);
-  app.post('/students/', require('./api/students').game);
   // app.put('/admin/students/:id/', require('./views/admin/students/index').update);
   // app.put('/admin/students/:id/user/', require('./views/admin/students/index').linkUser);
   // app.delete('/admin/students/:id/user/', require('./views/admin/students/index').unlinkUser);

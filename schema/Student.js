@@ -22,9 +22,11 @@ exports = module.exports = function(app, mongoose) {
       {
         datePlayed: { type: Date, default: Date.now},
         score: {type: Number, default: 0},
-        time: {type: Number}
       }
     ],
+    persistance: {
+      type: mongoose.Schema.Types.Mixed
+    },
     status: {
       id: { type: String, ref: 'Status' },
       name: { type: String, default: '' },

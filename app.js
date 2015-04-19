@@ -33,6 +33,9 @@ app.db.once('open', function () {
 //config data models
 require('./models')(app, mongoose);
 
+// API endpoints
+app.use('/api', require('./api/routes')(express.Router()));
+
 //settings
 app.disable('x-powered-by');
 app.set('port', config.port);
