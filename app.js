@@ -1,7 +1,7 @@
 'use strict';
 
 //dependencies
-var config = require('./config'),
+var config = require('config'),
     express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
