@@ -26,11 +26,10 @@ Local Dev Setup Instructions
 5. Open a terminal (command line for windows) in the directory of the repo you just cloned.
 6. Run: `vagrant up`, which will download a vm image and install all of the dependencies of this project.
 7. Once the installation is complete run: `vagrant ssh`, and this will ssh you into the new box. (If you run into issues here you may not have openssh in your path. Add the git bin tools to your system path to fix this.) 
-8. Now you can create the db with the command `createdb molecular`.
-9. In the terminal that is ssh-ed into the vagrant box `cd app` and run `npm install`. This will install all of the node dependencies for the project. 
-10. To setup the root account and database follow the instructions on the instructions [here](https://github.com/jedireza/drywall#setup)
-11. You can now run the server by `cd app` and `node app.js'. 
-12. If everything went well the account management website will be available through localhost:3000 and the api server should be available through localhost:3000/api/<endpoint> 
+8. In the terminal that is ssh-ed into the vagrant box `cd app` and run `npm install`. This will install all of the node dependencies for the project. 
+9. To setup the root account and database follow the instructions on the instructions [here](https://github.com/jedireza/drywall#setup)
+10. You can now run the server by `cd app` and `node app.js'. 
+11. If everything went well the account management website will be available through localhost:3000 and the api server should be available through localhost:3000/api/<endpoint> 
 
 For a full list of vagrant commands go [here](https://docs.vagrantup.com/v2/cli/index.html)
 
